@@ -37,7 +37,7 @@ from flang.interpreter import Interpreter, FlangRuntimeError
 WEB_DIR = os.path.join(os.path.dirname(__file__), "web")
 EXAMPLES_DIR = os.path.join(os.path.dirname(__file__), "..", "examples")
 RUN_TIMEOUT_SECONDS = 10
-PORT = 8765
+PORT = int(os.environ.get("PORT", 8765))
 
 # The interpreter changes the working directory (case files, report
 # exports, etc. are written relative to cwd) and this is a single-user
@@ -253,7 +253,7 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def main():
-    server = ThreadingHTTPServer(("127.0.0.1", PORT), Handler)
+    server = ThreadingHTTPServer(("0.0.0.0", PORT), Handler)
     print(f"FLANG Web IDE running at http://localhost:{PORT}")
     print("Press Ctrl+C to stop.")
     try:
