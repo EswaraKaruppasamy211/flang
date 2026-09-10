@@ -2,7 +2,7 @@
    FLANG Web IDE — app.js
    No framework, no build step. Content data lives in content.js.
    ============================================================ */
-
+const API_BASE_URL = "https://flang-backend.onrender.com";
 // ---------------- tab navigation ----------------
 
 const tabButtons = document.querySelectorAll(".tab-btn");
@@ -246,7 +246,7 @@ document.getElementById("save-btn").addEventListener("click", () => {
 
 const examplePicker = document.getElementById("example-picker");
 
-fetch("/api/examples")
+fetch(`${API_BASE_URL}/api/examples`)
   .then((r) => r.json())
   .then((data) => {
     (data.examples || []).forEach((ex) => {
@@ -303,7 +303,7 @@ runBtn.addEventListener("click", async () => {
   auditStrip.classList.add("hidden");
 
   try {
-    const res = await fetch("/api/run", {
+    const res = await fetch(`${API_BASE_URL}/api/run`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ source, case_id: caseId, investigator, role }),
