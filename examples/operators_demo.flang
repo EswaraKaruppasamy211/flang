@@ -1,0 +1,40 @@
+# Operator demo: compound assignment, increment/decrement,
+# exponent, floor division, membership (in), and ternary (?:)
+
+# --- compound assignment ---
+x := 10;
+x += 5;   print(f"x += 5  -> {to_string(x)}");
+x -= 3;   print(f"x -= 3  -> {to_string(x)}");
+x *= 2;   print(f"x *= 2  -> {to_string(x)}");
+x /= 4;   print(f"x /= 4  -> {to_string(x)}");
+x %= 4;   print(f"x %= 4  -> {to_string(x)}");
+
+# --- increment / decrement ---
+count := 0;
+count++;
+count++;
+count++;
+count--;
+print(f"count after ++, ++, ++, -- -> {to_string(count)}");
+
+# --- exponent and floor division ---
+print(f"2 ** 10 = {to_string(2 ** 10)}");
+print(f"17 // 5 = {to_string(17 // 5)}");
+
+# --- membership operator ---
+iocs := ["update_svc.exe", "malicious.dll"];
+filename := "update_svc.exe";
+if filename in iocs {
+    print(f"{filename} matches a known IOC (via 'in' operator)");
+}
+
+# --- ternary operator ---
+score := 85;
+verdict := score >= 70 ? "PASS" : "FAIL";
+print(f"Score {to_string(score)} -> {verdict}");
+
+# --- proof that a runtime error is now a clean, single-line message ---
+# (uncomment to see: this used to leak a raw Python traceback)
+# bad := 5 / 0;
+
+print("All operator checks complete.");

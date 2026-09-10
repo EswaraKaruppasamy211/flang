@@ -1,0 +1,75 @@
+# Demonstrates every module added in this revision, on top of the
+# unchanged existing FLANG functionality.
+
+# --- security namespace: session identity ---
+who := security.whoami();
+print(f"Running as {get(who, \"investigator\")} ({get(who, \"role\")}) on case {get(who, \"case_id\")}");
+
+# --- forensics namespace: quick composite triage ---
+triage := forensics.quick_triage();
+print(f"Quick triage: {get(triage, \"hostname\")} / {to_string(get(triage, \"process_count\"))} processes");
+
+# --- case management (local, file-backed) ---
+try {
+    case.create("DEMO-CASE-01", "Namespace extension demo", "analyst");
+    print("Case DEMO-CASE-01 created.");
+} catch err {
+    print("Case DEMO-CASE-01 already exists from a previous run -- reusing it.");
+}
+case.add_note("DEMO-CASE-01", "Case opened for module verification", "analyst");
+
+# --- evidence manifest (sha256 + sha512) ---
+manifest := evidence.manifest("demo_evidence/host17_files/Users/jdoe/Downloads/update_svc.exe", "analyst");
+print(f"Evidence sha256: {get(manifest, \"sha256\")}");
+print(f"Evidence sha512 (first 16 chars): {substring(get(manifest, \"sha512\"), 0, 16)}");
+case.add_evidence("DEMO-CASE-01", manifest);
+print(f"Evidence items in case: {to_string(length(case.list_evidence(\"DEMO-CASE-01\")))}");
+
+# --- hash namespace: sha512 alongside existing sha256 ---
+print(f"hash.sha512('hello') starts with: {substring(hash.sha512(\"hello\"), 0, 16)}");
+
+# --- simulation namespace: synthetic events for pipeline testing ---
+events := simulation.scenario(["process", "network", "dns"], 9);
+print(f"Synthetic events generated: {to_string(length(events))}");
+
+# --- correlation namespace: time-window correlate() + relationship links ---
+synthetic_timeline := correlation.correlate([events], window_seconds: 120);
+print(f"Correlation clusters: {to_string(length(get(synthetic_timeline, \"clusters\")))}");
+
+# NOTE: FLANG does not yet support list-indexing syntax (events[0]) --
+# a known limitation (see SCOPE_AND_ROADMAP.md). Generating two fresh
+# named events instead of indexing into the list works around this.
+proc_evt := simulation.process_event();
+net_evt := simulation.network_event();
+edge := correlation.link(proc_evt, net_evt, "observed within same synthetic scenario");
+graph := correlation.build_graph([edge]);
+print(f"Relationship graph edges: {to_string(get(graph, \"edge_count\"))}");
+
+# --- timeline namespace: sort / filter / search / group / export ---
+sorted_events := timeline.sort(synthetic_timeline);
+print(f"Sorted event count: {to_string(length(sorted_events))}");
+dns_only := timeline.filter(synthetic_timeline, "type", "DNSEvent");
+print(f"DNS-only events: {to_string(length(dns_only))}");
+grouped := timeline.group_by(synthetic_timeline, "type");
+print(f"Distinct event types: {to_string(length(keys(grouped)))}");
+timeline.export(synthetic_timeline, format: "csv", path: "output/synthetic_timeline.csv");
+
+# --- filesystem namespace: dotted access to existing DiskImage functions ---
+disk := load_disk_image("demo_evidence/host17_files");
+files := filesystem.list_files(disk, ".");
+print(f"Files via filesystem namespace: {to_string(length(files))}");
+
+# --- reporting alias (same object as 'report', proven by using both names) ---
+inv_report := report.create("Namespace Extension Verification");
+inv_report := reporting.add(inv_report, "Quick Triage", triage);
+inv_report := reporting.add(inv_report, "Relationship Graph", graph);
+inv_report := report.sign(inv_report, key_id: "demo_key");
+report.save(inv_report, format: "json", path: "output/namespace_demo_report.json");
+
+# --- audit namespace: query the interpreter's own audit log ---
+audit_summary := audit.summary();
+print(f"Audit entries so far: {to_string(get(audit_summary, \"entry_count\"))}");
+audit.export("output/namespace_demo_audit.json");
+
+case.close("DEMO-CASE-01");
+print("Namespace extension demo complete.");

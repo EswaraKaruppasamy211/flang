@@ -1,0 +1,16 @@
+# Python caches and local tooling
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Generated runtime and test output
+output/
+tests/output/
+tests/demo_evidence/
+
+# Local cryptographic key material
+keystore/*.key
+keystore/*.pem
+keystore/*.der

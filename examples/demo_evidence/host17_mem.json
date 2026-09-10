@@ -1,0 +1,17 @@
+{
+  "processes": [
+    {"type": "ProcessRecord", "pid": 4123, "name": "explorer.exe", "ppid": 812, "suspicious": false, "start_time": 1755000000},
+    {"type": "ProcessRecord", "pid": 5566, "name": "update_svc.exe", "ppid": 4123, "suspicious": true,
+     "reason": "RWX private memory region, unsigned image, no matching disk-file signature", "start_time": 1755000300},
+    {"type": "ProcessRecord", "pid": 6001, "name": "svchost.exe", "ppid": 812, "suspicious": false, "start_time": 1755000010}
+  ],
+  "connections": [
+    {"type": "NetFlow", "pid": 5566, "src_ip": "10.0.0.17", "dst_ip": "203.0.113.55", "dst_port": 4444, "protocol": "TCP", "timestamp": 1755000310},
+    {"type": "NetFlow", "pid": 4123, "src_ip": "10.0.0.17", "dst_ip": "10.0.0.1", "dst_port": 443, "protocol": "TCP", "timestamp": 1755000005}
+  ],
+  "strings": [
+    "cmd.exe /c whoami",
+    "SELECT * FROM Win32_Process",
+    "beacon-checkin-lab-simulation"
+  ]
+}

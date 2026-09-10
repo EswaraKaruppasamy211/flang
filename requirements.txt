@@ -1,0 +1,5 @@
+# Core interpreter/runtime: Python standard library only.
+# Advanced features added in this revision need:
+cryptography>=41.0     # AES-based encrypted report export (export_encrypted/decrypt_report)
+scapy>=2.5              # optional: real .pcap/.pcapng parsing (falls back to JSON fixtures if absent)
+psutil>=5.9              # live system/process/network namespaces (system.*, process.*, network.*)

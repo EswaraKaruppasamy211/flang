@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Certificate of Completion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --page-bg-1: #021523;
+        --page-bg-2: #081f33;
+        --paper: #f3f4f2;
+        --ink: #112d45;
+        --blue: #0c2746;
+        --gold-1: #d5b565;
+        --gold-2: #8b6431;
+        --gold-3: #f3e4aa;
+        --line: rgba(17, 52, 82, 0.55);
+        --soft-line: rgba(17, 52, 82, 0.2);
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        min-height: 100%;
+        height: 100%;
+      }
+
+      body {
+        display: grid;
+        place-items: start center;
+        background:
+          radial-gradient(circle at 50% 22%, rgba(40, 98, 152, 0.35), transparent 28%),
+          linear-gradient(180deg, var(--page-bg-1) 0%, var(--page-bg-2) 100%);
+        font-family: "Inter", sans-serif;
+        color: var(--ink);
+      }
+
+      .certificate-shell {
+        position: relative;
+        width: min(90vw, 960px);
+        min-height: 680px;
+        padding: 16px 18px 18px;
+        background: rgba(6, 16, 28, 0.18);
+        border-radius: 24px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.42);
+      }
+
+      .certificate-shell::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.0));
+        border-radius: 20px;
+      }
+
+      .certificate {
+        position: relative;
+        background: var(--paper);
+        width: 100%;
+        min-height: 640px;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: inset 0 0 0 2px rgba(8, 24, 38, 0.06);
+      }
+
+      .certificate::before,
+      .certificate::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .certificate::before {
+        background:
+          radial-gradient(circle at 12% 78%, rgba(16, 52, 84, 0.08) 0 78px, transparent 79px),
+          radial-gradient(circle at 80% 72%, rgba(16, 52, 84, 0.07) 0 90px, transparent 91px),
+          linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0));
+      }
+
+      .certificate::after {
+        inset: 14px 18px 14px 18px;
+        border: 2px solid rgba(9, 44, 67, 0.08);
+        border-radius: 18px;
+      }
+
+      .wave-top {
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 94px;
+        background:
+          radial-gradient(circle at 14% 60%, rgba(255,255,255,0.85) 0 32px, transparent 33px),
+          radial-gradient(circle at 82% 72%, rgba(255,255,255,0.78) 0 34px, transparent 35px),
+          linear-gradient(180deg, rgba(18, 48, 84, 0.04), rgba(18, 48, 84, 0));
+        opacity: 0.9;
+      }
+
+      .wave-top::before,
+      .wave-top::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(12, 39, 70, 0.06), rgba(12, 39, 70, 0));
+      }
+
+      .wave-top::before {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+      }
+
+      .wave-top::after {
+        clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+      }
+
+      .blue-stripe {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 46%;
+        height: 110px;
+        background: linear-gradient(135deg, rgba(10, 42, 72, 0.95) 0%, rgba(12, 56, 94, 0.7) 36%, rgba(9, 30, 53, 0.18) 100%);
+        clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%);
+      }
+
+      .blue-stripe::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          135deg,
+          rgba(255,255,255,0.16),
+          rgba(255,255,255,0.16) 2px,
+          transparent 2px,
+          transparent 10px
+        );
+        opacity: 0.3;
+      }
+
+      .content {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 24px;
+        align-items: center;
+        padding: 42px 46px 26px 42px;
+      }
+
+      .certificate-heading {
+        position: absolute;
+        top: 122px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+      }
+
+      .medal-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 0;
+      }
+
+      .certificate-logo {
+        display: block;
+        width: min(190px, 100%);
+        height: auto;
+        object-fit: contain;
+        border-radius: 18px;
+        box-shadow: 0 18px 28px rgba(0, 0, 0, 0.18);
+      }
+
+      .right {
+        text-align: center;
+        padding: 148px 22px 0 0;
+      }
+
+      .certificate-title {
+        margin: 0;
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: clamp(3rem, 3.4vw, 4.2rem);
+        line-height: 0.9;
+        color: var(--blue);
+        font-weight: 600;
+      }
+
+      .certificate-sub {
+        margin: 2px 0 0;
+        font-size: 0.9rem;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--blue);
+        font-weight: 700;
+      }
+
+      .award-line {
+        margin-top: 14px;
+        font-size: 1.02rem;
+        color: rgba(17, 52, 82, 0.8);
+        font-weight: 500;
+      }
+
+      .recipient {
+        margin-top: 12px;
+        font-family: "Great Vibes", cursive;
+        font-size: clamp(3.2rem, 3.3vw, 4.4rem);
+        line-height: 0.95;
+        color: var(--ink);
+      }
+
+      .recipient-line {
+        width: 60%;
+        height: 1px;
+        margin: 10px auto 0;
+        background: linear-gradient(90deg, transparent, rgba(17, 52, 82, 0.5), transparent);
+      }
+
+      .recognition {
+        max-width: 640px;
+        margin: 18px auto 0;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: rgba(17, 52, 82, 0.82);
+        font-weight: 500;
+      }
+
+      .recognition .path {
+        font-style: italic;
+      }
+
+      .date-label {
+        margin-top: 40px;
+        font-size: 1.05rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: rgba(17, 52, 82, 0.9);
+      }
+
+      .date-label span {
+        display: inline-block;
+        min-width: 64px;
+      }
+
+      .signature-wrap {
+        margin: 70px auto 0;
+        text-align: center;
+      }
+
+      .signature {
+        font-family: "Great Vibes", cursive;
+        font-size: clamp(2.5rem, 2.7vw, 3.4rem);
+        line-height: 1;
+        color: rgba(17, 52, 82, 0.85);
+      }
+
+      .signature-line {
+        width: 54%;
+        max-width: 260px;
+        height: 1px;
+        margin: 6px auto 4px;
+        background: linear-gradient(90deg, transparent, rgba(17, 52, 82, 0.55), transparent);
+        position: relative;
+      }
+
+      .sig-name {
+        margin-top: 4px;
+        font-size: 0.8rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: rgba(17, 52, 82, 0.9);
+      }
+
+      .sig-role {
+        margin-top: 3px;
+        font-size: 0.7rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(17, 52, 82, 0.7);
+      }
+
+      @media (max-width: 760px) {
+        .certificate-shell {
+          width: min(94vw, 920px);
+        }
+
+        .content {
+          grid-template-columns: 1fr;
+          padding: 28px 20px 18px;
+          gap: 8px;
+        }
+
+        .medal-wrap {
+          padding-left: 0;
+        }
+
+        .medal {
+          width: 150px;
+          height: 150px;
+        }
+
+        .right {
+          padding: 90px 0 0;
+        }
+
+        .certificate-heading {
+          top: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="certificate-shell">
+      <div class="certificate">
+        <div class="wave-top"></div>
+        <div class="blue-stripe"></div>
+
+        <div class="content">
+          <div class="certificate-heading">
+            <h1 class="certificate-title">Certificate of completion</h1>
+          </div>
+
+          <div class="medal-wrap">
+            <img class="certificate-logo" src="/flang-logo.png" alt="FLANG forensic analysis language logo" />
+          </div>
+
+          <div class="right">
+            <div class="award-line">This Certificate is Honorably Bestowed Upon</div>
+
+            <div class="recipient" id="username">Name</div>
+            <div class="recipient-line"></div>
+
+            <div class="recognition">
+              In recognition of your outstanding dedication, integrity, and meaningful contributions
+              throughout the learning path * in <span class="path" id="learning-part">FLANG</span>
+            </div>
+
+            <div class="date-label"><span>Date:</span> <span id="certificate-date"></span></div>
+
+            <div class="signature-wrap">
+              <div class="signature">Leelarani K</div>
+              <div class="signature-line"></div>
+              <div class="sig-name">LEELARANI K</div>
+              <div class="sig-role">Lead Examiner</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      document.getElementById("username").textContent = params.get("name") || "Name";
+      document.getElementById("learning-part").textContent = params.get("course") || "FLANG";
+      document.getElementById("certificate-date").textContent = params.get("date") || "";
+    </script>
+  </body>
+</html>

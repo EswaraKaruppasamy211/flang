@@ -1,0 +1,54 @@
+# FLANG namespaced-stdlib demo: system, process, file, network, hash,
+# analyze, detection, and the synthetic security-testing lab -- all
+# using the syntax from the FLANG v2 specification.
+
+info := system.info();
+print(f"Host: {get(info, \"hostname\")} ({get(info, \"os\")} {get(info, \"os_release\")})");
+
+cpu := system.cpu();
+print(f"CPU cores (logical): {to_string(get(cpu, \"logical_cores\"))}");
+
+mem := system.memory();
+print(f"Memory used: {to_string(get(mem, \"percent_used\"))}%");
+
+# --- live process listing + simple detection rule ---
+processes := process.list();
+print(f"Processes observed: {to_string(length(processes))}");
+
+expected_parents := {"sshd": ["systemd", "init"]};
+flagged := detection.unexpected_parent(processes, expected_parents);
+print(f"Processes with unexpected parent: {to_string(length(flagged))}");
+
+# --- file forensics on a synthetic (non-executable) sample ---
+sample := analyze.file("demo_evidence/host17_files/Users/jdoe/Downloads/update_svc.exe");
+print(f"Sample hash: {sample.hash()}");
+print(f"Sample entropy: {to_string(sample.entropy())}");
+meta := sample.metadata();
+print(f"Sample type: {get(meta, \"file_type\")}");
+
+# --- live network observation ---
+dns := network.dns();
+if get(dns, "available") {
+    print(f"DNS nameservers: {to_string(length(get(dns, \"nameservers\")))}");
+}
+
+# --- hash namespace: works on files AND raw strings ---
+print(f"hash.sha256('hello') = {hash.sha256(\"hello\")}");
+
+# --- security testing lab: synthetic, non-malicious variant testing ---
+test.create("process_activity_marker");
+test.generate_variants(10);
+results := test.compare_detection();
+lab_report := test.generate_report();
+print(f"Detection rate across {to_string(get(lab_report, \"total_variants\"))} synthetic variants: {to_string(get(lab_report, \"detection_rate\"))}");
+
+# --- tie it together into a signed report ---
+inv_report := report.create("Live Host Triage");
+inv_report := report.add(inv_report, "System Info", info);
+inv_report := report.add(inv_report, "Flagged Processes", flagged);
+inv_report := report.add(inv_report, "Sample Analysis", meta);
+inv_report := report.add(inv_report, "Security-Testing-Lab Result", lab_report);
+inv_report := report.sign(inv_report, key_id: "triage_key");
+report.save(inv_report, format: "json", path: "output/live_triage_report.json");
+
+print("Live triage demo complete.");

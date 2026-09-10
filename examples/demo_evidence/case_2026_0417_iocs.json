@@ -1,0 +1,8 @@
+{
+  "file_names": ["update_svc.exe"],
+  "file_hashes": [],
+  "ip_addresses": ["203.0.113.55"],
+  "ports": [4444],
+  "keywords": ["update_svc.exe", "203.0.113.55"],
+  "usernames": []
+}

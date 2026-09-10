@@ -1,0 +1,12 @@
+{
+  "flows": [
+    {"type": "NetFlow", "src_ip": "10.0.0.17", "dst_ip": "203.0.113.55", "src_port": 51422, "dst_port": 4444,
+     "protocol": "TCP", "packet_count": 42, "byte_count": 18820, "timestamp": 1755000310},
+    {"type": "NetFlow", "src_ip": "10.0.0.17", "dst_ip": "10.0.0.1", "src_port": 51500, "dst_port": 443,
+     "protocol": "TCP", "packet_count": 120, "byte_count": 98230, "timestamp": 1755000005}
+  ],
+  "dns_events": [
+    {"type": "Event", "category": "dns_query", "query": "lab-c2-simulation.example-invalid", "timestamp": 1755000305},
+    {"type": "Event", "category": "dns_query", "query": "windowsupdate.microsoft.com", "timestamp": 1755000002}
+  ]
+}

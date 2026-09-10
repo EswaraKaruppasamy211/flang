@@ -1,0 +1,69 @@
+# Advanced features demo: dictionaries, try/catch, break/continue,
+# regex matching, list/dict utilities, anomaly detection, dual-control
+# signing, and encrypted inv_report export.
+
+# --- dictionaries ---
+proc_record := {"pid": 5566, "name": "update_svc.exe", "bytes_sent": 18820};
+print(f"Process: {get(proc_record, \"name\")} (pid {to_string(get(proc_record, \"pid\"))})");
+proc_record := map_set(proc_record, "flagged", true);
+print(f"Has 'flagged' key: {to_string(has_key(proc_record, \"flagged\"))}");
+
+# --- try/catch ---
+try {
+    bad := to_number("not-a-number");
+} catch err {
+    print(f"Caught expected error: {err}");
+}
+
+# --- break / continue ---
+i := 0;
+found := -1;
+while i < 10 {
+    i := i + 1;
+    if i % 2 != 0 {
+        continue;
+    }
+    if i == 8 {
+        found := i;
+        break;
+    }
+}
+print(f"Loop stopped at: {to_string(found)}");
+
+# --- regex ---
+if matches("update_svc.exe", "^update_.*\\.exe$") {
+    print("Filename matches suspicious naming pattern");
+}
+
+# --- list utilities ---
+sizes := [120, 118, 130, 125, 4500, 122, 119];
+print(f"Mean size: {to_string(mean(sizes))}");
+print(f"Stdev: {to_string(stdev(sizes))}");
+outliers := detect_outliers(sizes, threshold_stdevs: 2.0);
+print(f"Outliers found: {to_string(length(outliers))}");
+
+flows := [
+    {"dst_ip": "10.0.0.1", "byte_count": 1200},
+    {"dst_ip": "10.0.0.2", "byte_count": 980},
+    {"dst_ip": "203.0.113.55", "byte_count": 98230}
+];
+anomalies := detect_anomalies(flows, "byte_count", threshold_stdevs: 1.0);
+for a in anomalies {
+    print(f"Anomalous flow to {get(a, \"dst_ip\")}: {get(a, \"flagged_reason\")}");
+}
+
+# --- dual-control signing + encrypted export ---
+inv_report := new_report("Advanced Features Demo Report");
+inv_report := add_section(inv_report, "Outlier File Sizes", outliers);
+inv_report := add_section(inv_report, "Anomalous Network Flows", anomalies);
+inv_report := sign_report(inv_report, key_id: "primary_key");
+inv_report := co_sign_report(inv_report, key_id: "supervisor_key");
+export(inv_report, format: "json", path: "output/advanced_report.json");
+try {
+    export_encrypted(inv_report, path: "output/advanced_report.enc", key_id: "vault_key");
+    print("Encrypted export succeeded.");
+} catch err {
+    print(f"Encrypted export skipped (cryptography unavailable on this machine): {err}");
+}
+
+print("Advanced features demo complete.");

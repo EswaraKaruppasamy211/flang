@@ -1,0 +1,53 @@
+# Authorized incident investigation: suspected lateral movement
+# Case ID: CASE-2026-0417  |  Investigator role required: TIER2_ANALYST
+
+import iocs from "demo_evidence/case_2026_0417_iocs.json";
+
+# --- Acquisition (all read-only, auto-hashed at load) ---
+disk := load_disk_image("demo_evidence/host17_files");
+mem := load_memory_image("demo_evidence/host17_mem.json");
+pcap := load_pcap("demo_evidence/segment_capture.json");
+logset := load_logs("demo_evidence/host17_winevt.log", format: "syslog");
+
+disk_hash := sha256(disk);
+mem_hash := sha256(mem);
+pcap_hash := sha256(pcap);
+
+# --- Filesystem analysis ---
+all_files := list_files(disk, ".");
+deleted := carve_deleted(disk);
+suspicious_files := flag_suspicious(all_files, iocs);
+
+# --- Memory analysis ---
+procs := list_processes(mem);
+injected := detect_injection(mem);
+
+# --- Network analysis ---
+flows := list_flows(pcap);
+bad_flows := flag_suspicious_connections(flows, iocs);
+
+# --- Log analysis and correlation ---
+events := parse_events(logset);
+matched_events := match_iocs(events, iocs);
+
+case_timeline := correlate([suspicious_files, injected, bad_flows, matched_events], window_seconds: 300);
+
+# --- Conditional escalation logic ---
+if length(injected) > 0 {
+    severity := "HIGH";
+} else {
+    severity := "LOW";
+}
+
+# --- Reporting ---
+inv_report := new_report(f"Host17 Lateral Movement Investigation - Severity: {severity}");
+inv_report := add_section(inv_report, "Evidence Hashes", f"Disk: {disk_hash} | Memory: {mem_hash} | PCAP: {pcap_hash}");
+inv_report := add_section(inv_report, "Suspicious Files", suspicious_files);
+inv_report := add_section(inv_report, "Injected Processes", injected);
+inv_report := add_section(inv_report, "Suspicious Network Flows", bad_flows);
+inv_report := add_section(inv_report, "Matched Log Events", matched_events);
+inv_report := add_timeline(inv_report, case_timeline);
+inv_report := sign_report(inv_report, key_id: "analyst_tier2_key");
+
+export(inv_report, format: "json", path: "output/inv_report.json");
+export(inv_report, format: "html", path: "output/inv_report.html");

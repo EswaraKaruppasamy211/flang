@@ -1,0 +1,5 @@
+2026-08-12T09:00:02 HOST17 Security: An account was successfully logged on. Account: jdoe
+2026-08-12T09:05:10 HOST17 Security: A new process has been created. New Process Name: update_svc.exe. Creator: jdoe
+2026-08-12T09:05:12 HOST17 Sysmon: Network connection detected. Image: update_svc.exe Destination: 203.0.113.55
+2026-08-12T09:10:44 HOST17 Security: Special privileges assigned to new logon. Account: jdoe
+2026-08-12T09:15:00 HOST17 Application: Backup job completed successfully.

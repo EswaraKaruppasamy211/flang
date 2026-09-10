@@ -1,0 +1,9 @@
+# Addition of two numbers in FLANG
+
+a := 12;
+b := 8;
+sum := a + b;
+
+print(f"a = {a}");
+print(f"b = {b}");
+print(f"Sum = {sum}");

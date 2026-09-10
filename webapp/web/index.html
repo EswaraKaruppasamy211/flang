@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLANG — Forensic Language Workbench</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section id="auth-screen" class="auth-screen" aria-labelledby="auth-title">
+  <div class="auth-card">
+    <div class="auth-brand">
+      <img src="logo_updated.png" alt="FLANG Logo" class="auth-logo">
+      <div>
+        <div class="auth-kicker">// SECURE ACCESS</div>
+        <div class="auth-brand-name">FLANG</div>
+        <div class="auth-brand-sub">Forensic Workbench</div>
+      </div>
+    </div>
+    <div class="auth-heading">
+      <div class="page-kicker" id="auth-kicker">// VERIFY YOUR IDENTITY</div>
+      <h1 id="auth-title">Welcome back</h1>
+      <p id="auth-description">Enter your email to continue to the FLANG workbench.</p>
+    </div>
+    <form id="auth-form" class="auth-form" novalidate>
+      <label id="auth-name-field" class="auth-field hidden">Full name
+        <input id="auth-name" type="text" autocomplete="name">
+      </label>
+      <label class="auth-field">Email address
+        <input id="auth-email" type="email" autocomplete="email" required>
+      </label>
+      <label id="auth-confirm-email-field" class="auth-field hidden">Confirm email address
+        <input id="auth-confirm-email" type="email" autocomplete="email">
+      </label>
+      <label id="auth-password-field" class="auth-field hidden">Password
+        <input id="auth-password" type="password" autocomplete="current-password">
+      </label>
+      <label id="auth-confirm-password-field" class="auth-field hidden">Confirm password
+        <input id="auth-confirm-password" type="password" autocomplete="new-password">
+      </label>
+      <p id="auth-message" class="auth-message" role="alert"></p>
+      <button id="auth-submit" class="btn-primary auth-submit" type="submit">Continue</button>
+    </form>
+    <button id="auth-reset" class="auth-reset hidden" type="button">Use a different email</button>
+  </div>
+</section>
+
+<div class="app-shell">
+
+  <!-- ============ LEFT RAIL NAV ============ -->
+  <nav class="rail">
+    <div class="rail-brand">
+      <div class="logo-wrapper">
+        <img src="logo_updated.png" alt="FLANG Logo" class="brand-logo">
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">FLANG</span>
+        <span class="rail-sub">Forensic Workbench</span>
+      </div>
+    </div>
+
+    <div class="rail-nav-wrapper">
+      <div class="nav-label">Navigation</div>
+      <ul class="rail-tabs">
+        <li><button class="tab-btn active" data-tab="lab"><span class="tab-icon">▣</span>Lab</button></li>
+        <li><button class="tab-btn" data-tab="learn"><span class="tab-icon">◈</span>Learn</button></li>
+        <li><button class="tab-btn" data-tab="tips"><span class="tab-icon">✎</span>Tips</button></li>
+        <li><button class="tab-btn" data-tab="applications"><span class="tab-icon">▤</span>Applications</button></li>
+        <li><button class="tab-btn" data-tab="facts"><span class="tab-icon">✦</span>Facts</button></li>
+        <li><button class="tab-btn" data-tab="compiler-lang"><span class="tab-icon">▧</span>Compiler Language</button></li>
+      </ul>
+    </div>
+
+    <div class="rail-footer">
+      <div class="rail-custody-indicator">
+        <span class="custody-node"></span>
+        <span class="custody-text">CUSTODY LOG ACTIVE</span>
+      </div>
+      <div class="evidence-tag small">v0.2 · prototype</div>
+    </div>
+  </nav>
+
+  <!-- ============ MAIN CONTENT ============ -->
+  <main class="content">
+
+    <!-- ---------------- LAB ---------------- -->
+    <section id="page-lab" class="page active">
+      <header class="page-head page-head-hero">
+        <div class="head-brand-banner">
+          <img src="logo_updated.png" alt="FLANG Hero Symbol" class="head-hero-logo">
+          <div class="head-brand-meta">
+            <div class="page-kicker">// EXECUTIVE INTERFACE</div>
+            <h1>Lab Workbench</h1>
+            <p class="page-dek">Write a <code>.flang</code> script, execute live against runtime target, and verify cryptographic chain-of-custody output.</p>
+          </div>
+        </div>
+      </header>
+
+      <div class="lab-grid">
+        <div class="lab-editor-pane">
+          <div class="pane-toolbar">
+            <div class="session-fields">
+              <label>Case ID<input type="text" id="field-case" value="WEB-SESSION-01"></label>
+              <label>Investigator<input type="text" id="field-investigator" value="you"></label>
+              <label>Role
+                <select id="field-role">
+                  <option value="TIER1_TRIAGE">Viewer / Tier1</option>
+                  <option value="TIER2_ANALYST">Analyst / Tier2</option>
+                  <option value="LEAD_INVESTIGATOR" selected>Investigator / Lead</option>
+                  <option value="ADMIN">Administrator</option>
+                </select>
+              </label>
+            </div>
+            <div class="toolbar-actions">
+              <button id="new-btn" class="btn-secondary" title="Start a blank script">New</button>
+              <button id="open-btn" class="btn-secondary" title="Open a .flang file from your computer">Open…</button>
+              <input type="file" id="file-input" accept=".flang,.txt" hidden>
+              <select id="example-picker"><option value="">Load bundled example…</option></select>
+              <button id="save-btn" class="btn-secondary" title="Save this script to your computer">Save</button>
+              <button id="run-btn" class="btn-primary">▶ Run Execution</button>
+            </div>
+          </div>
+          <div class="editor-filename" id="editor-filename"><span class="file-icon">📄</span> <span id="filename-label">untitled.flang</span> <span class="dirty-dot hidden" id="dirty-dot" title="Unsaved changes">●</span></div>
+          <div id="editor-host"></div>
+        </div>
+
+        <div class="lab-console-pane">
+          <div class="console-header">
+            <div class="console-title-group">
+              <img src="logo_updated.png" alt="" class="console-micro-logo">
+              <span>Terminal Output</span>
+            </div>
+            <span id="run-status-tag" class="evidence-tag hidden"></span>
+          </div>
+          <pre id="console-output" class="console-output">Write a script on the left, then press Run.
+No script has been executed in this session yet.</pre>
+
+          <div id="audit-strip" class="audit-strip hidden">
+            <div class="audit-item">
+              <span class="audit-label">Audit chain</span>
+              <span id="audit-chain-value" class="audit-value">—</span>
+            </div>
+            <div class="audit-item">
+              <span class="audit-label">Evidence integrity</span>
+              <span id="audit-evidence-value" class="audit-value">—</span>
+            </div>
+            <div class="audit-item">
+              <span class="audit-label">Script SHA-256</span>
+              <span id="audit-hash-value" class="audit-value mono-small">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------- LEARN ---------------- -->
+    <section id="page-learn" class="page">
+      <header class="page-head">
+        <div class="page-kicker">// DOCUMENTATION & GUIDES</div>
+        <h1>Learn</h1>
+        <p class="page-dek">Zero to hero, in the order an investigator actually needs it.</p>
+      </header>
+      <div class="learn-layout">
+        <nav class="learn-toc" id="learn-toc"></nav>
+        <div class="learn-body" id="learn-body"></div>
+      </div>
+    </section>
+
+    <!-- ---------------- TIPS ---------------- -->
+    <section id="page-tips" class="page">
+      <header class="page-head">
+        <div class="page-kicker">// INVESTIGATOR NOTES</div>
+        <h1>Tips</h1>
+        <p class="page-dek">Real gotchas, found by actually running this thing in production environments.</p>
+      </header>
+      <div class="tips-grid" id="tips-grid"></div>
+    </section>
+
+    <!-- ---------------- APPLICATIONS ---------------- -->
+    <section id="page-applications" class="page">
+      <header class="page-head">
+        <div class="page-kicker">// USE CASES</div>
+        <h1>Applications</h1>
+        <p class="page-dek">What FLANG is actually built for.</p>
+      </header>
+      <div class="apps-grid" id="apps-grid"></div>
+    </section>
+
+    <!-- ---------------- FACTS ---------------- -->
+    <section id="page-facts" class="page">
+      <header class="page-head">
+        <div class="page-kicker">// SPECIFICATIONS</div>
+        <h1>Facts</h1>
+        <p class="page-dek">The short, honest version of what FLANG is and isn't.</p>
+      </header>
+      <div class="facts-layout" id="facts-layout"></div>
+    </section>
+
+    <!-- ---------------- COMPILER LANGUAGE ---------------- -->
+    <section id="page-compiler-lang" class="page compiler-page">
+      <header class="page-head">
+        <div class="page-kicker">// FLANG LEARNING LAB</div>
+        <h1>Learn FLANG online.</h1>
+        <p class="page-dek">Build your understanding of the forensic language, one practical sample at a time.</p>
+      </header>
+      <div id="compiler-lang-body"></div>
+    </section>
+
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="content.js"></script>
+<script src="auth.js"></script>
+<script src="app.js"></script>
+<script src="compiler-language-content.js"></script>
+<script src="compiler-language.js"></script>
+</body>
+</html>

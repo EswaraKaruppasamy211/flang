@@ -1,0 +1,209 @@
+{
+  "case_id": "DEMO-CASE-01",
+  "title": "Namespace extension demo",
+  "opened_by": "analyst",
+  "opened_at": 1788497890.1339025,
+  "status": "closed",
+  "evidence": [
+    {
+      "evidence_id": "4acf2b06-95b7-431d-ada0-0da4e6389ba2",
+      "path": "demo_evidence/host17_files/Users/jdoe/Downloads/update_svc.exe",
+      "sha256": "1cd11e95e3ffa1c5de5aca5fc3a8e07206709b61c9a6032f0f8f78179cbb4e18",
+      "sha512": "6dbcfc49e141356fbecb6f70cf75ed3e8c584fe44bb4fabe62332d21eec369786a08d7f5cb3002d36d88c5d206716ed99432be6410191a67a23bfc2109e205b1",
+      "investigator": "analyst",
+      "acquired_at": 1788497890.1399384
+    },
+    {
+      "evidence_id": "7a63d0ce-859f-4f41-b74f-e47b1cf60a12",
+      "path": "demo_evidence/host17_files/Users/jdoe/Downloads/update_svc.exe",
+      "sha256": "1cd11e95e3ffa1c5de5aca5fc3a8e07206709b61c9a6032f0f8f78179cbb4e18",
+      "sha512": "6dbcfc49e141356fbecb6f70cf75ed3e8c584fe44bb4fabe62332d21eec369786a08d7f5cb3002d36d88c5d206716ed99432be6410191a67a23bfc2109e205b1",
+      "investigator": "analyst",
+      "acquired_at": 1788497912.4005961
+    },
+    {
+      "evidence_id": "b487dfde-4556-4138-9dc3-3a8158f4ada0",
+      "path": "demo_evidence/host17_files/Users/jdoe/Downloads/update_svc.exe",
+      "sha256": "1cd11e95e3ffa1c5de5aca5fc3a8e07206709b61c9a6032f0f8f78179cbb4e18",
+      "sha512": "6dbcfc49e141356fbecb6f70cf75ed3e8c584fe44bb4fabe62332d21eec369786a08d7f5cb3002d36d88c5d206716ed99432be6410191a67a23bfc2109e205b1",
+      "investigator": "analyst",
+      "acquired_at": 1788703535.7762372
+    },
+    {
+      "evidence_id": "9d8235b0-38fc-441a-b752-e5eafc88a88c",
+      "path": "demo_evidence/host17_files/Users/jdoe/Downloads/update_svc.exe",
+      "sha256": "1cd11e95e3ffa1c5de5aca5fc3a8e07206709b61c9a6032f0f8f78179cbb4e18",
+      "sha512": "6dbcfc49e141356fbecb6f70cf75ed3e8c584fe44bb4fabe62332d21eec369786a08d7f5cb3002d36d88c5d206716ed99432be6410191a67a23bfc2109e205b1",
+      "investigator": "analyst",
+      "acquired_at": 1788703678.157892
+    },
+    {
+      "evidence_id": "4c7bdcdb-2ae4-488b-b6fc-70212b97e8ec",
+      "path": "demo_evidence/host17_files/Users/jdoe/Downloads/update_svc.exe",
+      "sha256": "1cd11e95e3ffa1c5de5aca5fc3a8e07206709b61c9a6032f0f8f78179cbb4e18",
+      "sha512": "6dbcfc49e141356fbecb6f70cf75ed3e8c584fe44bb4fabe62332d21eec369786a08d7f5cb3002d36d88c5d206716ed99432be6410191a67a23bfc2109e205b1",
+      "investigator": "analyst",
+      "acquired_at": 1788703695.016237
+    },
+    {
+      "evidence_id": "18363cf6-4a26-4375-af44-835559696cf3",
+      "path": "demo_evidence/host17_files/Users/jdoe/Downloads/update_svc.exe",
+      "sha256": "1cd11e95e3ffa1c5de5aca5fc3a8e07206709b61c9a6032f0f8f78179cbb4e18",
+      "sha512": "6dbcfc49e141356fbecb6f70cf75ed3e8c584fe44bb4fabe62332d21eec369786a08d7f5cb3002d36d88c5d206716ed99432be6410191a67a23bfc2109e205b1",
+      "investigator": "analyst",
+      "acquired_at": 1788703699.3567383
+    },
+    {
+      "evidence_id": "f9e64c23-7101-454e-add0-c7a2f25be2ae",
+      "path": "demo_evidence/host17_files/Users/jdoe/Downloads/update_svc.exe",
+      "sha256": "1cd11e95e3ffa1c5de5aca5fc3a8e07206709b61c9a6032f0f8f78179cbb4e18",
+      "sha512": "6dbcfc49e141356fbecb6f70cf75ed3e8c584fe44bb4fabe62332d21eec369786a08d7f5cb3002d36d88c5d206716ed99432be6410191a67a23bfc2109e205b1",
+      "investigator": "analyst",
+      "acquired_at": 1788770880.1526296
+    },
+    {
+      "evidence_id": "7afd4823-a3f6-4bcf-a192-ba0601b85b65",
+      "path": "demo_evidence/host17_files/Users/jdoe/Downloads/update_svc.exe",
+      "sha256": "1cd11e95e3ffa1c5de5aca5fc3a8e07206709b61c9a6032f0f8f78179cbb4e18",
+      "sha512": "6dbcfc49e141356fbecb6f70cf75ed3e8c584fe44bb4fabe62332d21eec369786a08d7f5cb3002d36d88c5d206716ed99432be6410191a67a23bfc2109e205b1",
+      "investigator": "analyst",
+      "acquired_at": 1788773772.8843386
+    },
+    {
+      "evidence_id": "55b7d257-959e-4c62-b3dc-b60ea5d2ea5d",
+      "path": "demo_evidence/host17_files/Users/jdoe/Downloads/update_svc.exe",
+      "sha256": "1cd11e95e3ffa1c5de5aca5fc3a8e07206709b61c9a6032f0f8f78179cbb4e18",
+      "sha512": "6dbcfc49e141356fbecb6f70cf75ed3e8c584fe44bb4fabe62332d21eec369786a08d7f5cb3002d36d88c5d206716ed99432be6410191a67a23bfc2109e205b1",
+      "investigator": "analyst",
+      "acquired_at": 1788774150.751658
+    },
+    {
+      "evidence_id": "23e22f5e-511a-471c-b8b0-a6f2fa4e54ba",
+      "path": "demo_evidence/host17_files/Users/jdoe/Downloads/update_svc.exe",
+      "sha256": "1cd11e95e3ffa1c5de5aca5fc3a8e07206709b61c9a6032f0f8f78179cbb4e18",
+      "sha512": "6dbcfc49e141356fbecb6f70cf75ed3e8c584fe44bb4fabe62332d21eec369786a08d7f5cb3002d36d88c5d206716ed99432be6410191a67a23bfc2109e205b1",
+      "investigator": "analyst",
+      "acquired_at": 1788799753.0858133
+    },
+    {
+      "evidence_id": "afa24bb6-1205-4e9e-94a7-4a5b1f1d1616",
+      "path": "demo_evidence/host17_files/Users/jdoe/Downloads/update_svc.exe",
+      "sha256": "1cd11e95e3ffa1c5de5aca5fc3a8e07206709b61c9a6032f0f8f78179cbb4e18",
+      "sha512": "6dbcfc49e141356fbecb6f70cf75ed3e8c584fe44bb4fabe62332d21eec369786a08d7f5cb3002d36d88c5d206716ed99432be6410191a67a23bfc2109e205b1",
+      "investigator": "analyst",
+      "acquired_at": 1788861211.7575517
+    },
+    {
+      "evidence_id": "7b2fc244-0722-4453-b34e-121a15d1c1f9",
+      "path": "demo_evidence/host17_files/Users/jdoe/Downloads/update_svc.exe",
+      "sha256": "1cd11e95e3ffa1c5de5aca5fc3a8e07206709b61c9a6032f0f8f78179cbb4e18",
+      "sha512": "6dbcfc49e141356fbecb6f70cf75ed3e8c584fe44bb4fabe62332d21eec369786a08d7f5cb3002d36d88c5d206716ed99432be6410191a67a23bfc2109e205b1",
+      "investigator": "analyst",
+      "acquired_at": 1788883236.904952
+    },
+    {
+      "evidence_id": "847dbc64-44df-4b00-8161-125dfa62f805",
+      "path": "demo_evidence/host17_files/Users/jdoe/Downloads/update_svc.exe",
+      "sha256": "1cd11e95e3ffa1c5de5aca5fc3a8e07206709b61c9a6032f0f8f78179cbb4e18",
+      "sha512": "6dbcfc49e141356fbecb6f70cf75ed3e8c584fe44bb4fabe62332d21eec369786a08d7f5cb3002d36d88c5d206716ed99432be6410191a67a23bfc2109e205b1",
+      "investigator": "analyst",
+      "acquired_at": 1788935565.1591215
+    },
+    {
+      "evidence_id": "b73c6772-906a-4593-b128-3e23fd7ea661",
+      "path": "demo_evidence/host17_files/Users/jdoe/Downloads/update_svc.exe",
+      "sha256": "1cd11e95e3ffa1c5de5aca5fc3a8e07206709b61c9a6032f0f8f78179cbb4e18",
+      "sha512": "6dbcfc49e141356fbecb6f70cf75ed3e8c584fe44bb4fabe62332d21eec369786a08d7f5cb3002d36d88c5d206716ed99432be6410191a67a23bfc2109e205b1",
+      "investigator": "analyst",
+      "acquired_at": 1788946122.6577501
+    }
+  ],
+  "notes": [
+    {
+      "note": "Case opened for module verification",
+      "by": "analyst",
+      "at": 1788497890.1360288
+    },
+    {
+      "note": "Case opened for module verification",
+      "by": "analyst",
+      "at": 1788497912.395079
+    },
+    {
+      "note": "Case opened for module verification",
+      "by": "analyst",
+      "at": 1788703535.7676284
+    },
+    {
+      "note": "Case opened for module verification",
+      "by": "analyst",
+      "at": 1788703678.1529737
+    },
+    {
+      "note": "Case opened for module verification",
+      "by": "analyst",
+      "at": 1788703695.0109012
+    },
+    {
+      "note": "Case opened for module verification",
+      "by": "analyst",
+      "at": 1788703699.3517954
+    },
+    {
+      "note": "Case opened for module verification",
+      "by": "analyst",
+      "at": 1788770880.1442204
+    },
+    {
+      "note": "Case opened for module verification",
+      "by": "analyst",
+      "at": 1788770935.0148008
+    },
+    {
+      "note": "Case opened for module verification",
+      "by": "analyst",
+      "at": 1788773765.6828744
+    },
+    {
+      "note": "Case opened for module verification",
+      "by": "analyst",
+      "at": 1788773772.8781228
+    },
+    {
+      "note": "Case opened for module verification",
+      "by": "analyst",
+      "at": 1788773862.1360137
+    },
+    {
+      "note": "Case opened for module verification",
+      "by": "analyst",
+      "at": 1788774150.7463007
+    },
+    {
+      "note": "Case opened for module verification",
+      "by": "analyst",
+      "at": 1788799753.0786524
+    },
+    {
+      "note": "Case opened for module verification",
+      "by": "analyst",
+      "at": 1788861211.720608
+    },
+    {
+      "note": "Case opened for module verification",
+      "by": "analyst",
+      "at": 1788883236.897441
+    },
+    {
+      "note": "Case opened for module verification",
+      "by": "analyst",
+      "at": 1788935565.1502533
+    },
+    {
+      "note": "Case opened for module verification",
+      "by": "analyst",
+      "at": 1788946122.6533823
+    }
+  ],
+  "closed_at": 1788946122.705803
+}

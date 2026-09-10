@@ -1,0 +1,42 @@
+# Demonstrates FLANG as a normal general-purpose language:
+# recursive functions, while loops, elif chains, modulo, and/or/not.
+
+function factorial(n) {
+    if n <= 1 {
+        return 1;
+    } else {
+        return n * factorial(n - 1);
+    }
+}
+
+print(f"5! = {factorial(5)}");
+
+# --- while loop + modulo (classic FizzBuzz) ---
+i := 1;
+while i <= 15 {
+    if i % 15 == 0 {
+        print("FizzBuzz");
+    } elif i % 3 == 0 {
+        print("Fizz");
+    } elif i % 5 == 0 {
+        print("Buzz");
+    } else {
+        print(to_string(i));
+    }
+    i := i + 1;
+}
+
+# --- range() + for loop, boolean logic ---
+total := 0;
+for n in range(1, 11) {
+    if n % 2 == 0 and n > 4 {
+        total := total + n;
+    }
+}
+print(f"Sum of even numbers >4 in 1..10 = {total}");
+
+is_ready := true;
+is_blocked := false;
+if is_ready and not is_blocked {
+    print("System ready to proceed.");
+}
