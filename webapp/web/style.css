@@ -3237,3 +3237,400 @@ select,
     border-top: 3px solid var(--primary);
   }
 }
+
+/* ---------------- Final responsive layout safeguards ----------------
+   Layout-only overrides keep the existing controls and navigation intact. */
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+.content,
+.page,
+.page-head,
+.lab-grid,
+.learn-layout,
+.compiler-page,
+#compiler-lang-body {
+  min-width: 0;
+}
+
+.page-dek,
+.lesson,
+.lesson p,
+.lesson li,
+.tip-card p,
+.app-card p,
+.fact-card p,
+.compiler-sample-card p,
+.compiler-detail p,
+.quiz-result p {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1080px) {
+  .content {
+    width: min(100% - 40px, 1240px);
+  }
+
+  .rail-tabs {
+    width: 100%;
+  }
+
+  .rail-tabs li {
+    flex: 1 1 auto;
+  }
+
+  .tab-btn {
+    justify-content: center;
+    white-space: normal;
+  }
+
+  .lab-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lab-editor-pane,
+  .lab-console-pane {
+    min-width: 0;
+  }
+
+  .learn-layout,
+  .facts-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tips-grid,
+  .apps-grid,
+  .compiler-sample-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .auth-screen {
+    padding: 20px 16px;
+  }
+
+  .auth-card {
+    padding: 26px 20px;
+  }
+
+  .app-shell {
+    width: 100%;
+  }
+
+  .rail {
+    width: 100%;
+    padding: 12px 16px;
+    gap: 12px;
+  }
+
+  .rail-brand {
+    min-width: 0;
+  }
+
+  .rail-nav-wrapper {
+    min-width: 0;
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  .rail-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 5px;
+  }
+
+  .rail-tabs li {
+    min-width: 0;
+  }
+
+  .tab-btn {
+    min-width: 0;
+    min-height: 38px;
+    justify-content: flex-start;
+    gap: 6px;
+    padding: 8px 7px;
+    font-size: 11px;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .tab-icon {
+    flex: 0 0 14px;
+  }
+
+  .content {
+    width: 100%;
+    padding: 30px 16px 56px;
+  }
+
+  .page-head {
+    margin-bottom: 28px;
+    text-align: left;
+  }
+
+  .page-head h1 {
+    font-size: clamp(30px, 10vw, 44px);
+    line-height: 1.1;
+  }
+
+  .page-dek {
+    font-size: 13.5px;
+  }
+
+  .head-brand-banner {
+    gap: 16px;
+    padding: 22px 18px;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .head-hero-logo {
+    width: 58px;
+    height: 58px;
+  }
+
+  .head-brand-banner::after {
+    display: none;
+  }
+
+  .pane-toolbar {
+    align-items: stretch;
+    padding: 12px;
+  }
+
+  .session-fields,
+  .toolbar-actions {
+    width: 100%;
+  }
+
+  .session-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .session-fields label:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .session-fields input,
+  .session-fields select,
+  #example-picker {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .toolbar-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .toolbar-actions button,
+  .toolbar-actions select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .toolbar-actions #run-btn {
+    grid-column: 1 / -1;
+    justify-content: center;
+  }
+
+  #editor-host {
+    height: 400px;
+    overflow: hidden;
+  }
+
+  #editor-host .CodeMirror {
+    font-size: 12px;
+  }
+
+  .console-header {
+    gap: 10px;
+    padding: 11px 12px;
+  }
+
+  .console-title-group {
+    min-width: 0;
+  }
+
+  .console-title-group span {
+    overflow-wrap: anywhere;
+  }
+
+  .console-output {
+    height: 260px;
+    padding: 14px;
+    font-size: 12px;
+  }
+
+  .audit-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .audit-item {
+    border-right: 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .audit-item:last-child {
+    border-bottom: 0;
+  }
+
+  .learn-toc {
+    grid-template-columns: 1fr;
+  }
+
+  #page-learn .learn-body {
+    padding: 20px 16px;
+  }
+
+  .tips-grid,
+  .apps-grid,
+  .facts-layout,
+  .compiler-sample-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tip-card,
+  .app-card,
+  .fact-card,
+  .compiler-sample-card,
+  .compiler-detail,
+  .compiler-quiz,
+  .quiz-result {
+    padding: 20px 17px;
+  }
+
+  .compiler-page {
+    margin: -30px -16px -56px;
+    padding: 30px 16px 56px;
+  }
+
+  .compiler-hero {
+    gap: 16px;
+  }
+
+  .compiler-toolbar,
+  .compiler-detail-meta,
+  .certificate-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .compiler-name {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .compiler-name input {
+    width: 100%;
+  }
+
+  .compiler-search,
+  .compiler-search input {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .sample-card-top,
+  .sample-meta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .compiler-sample-card .btn-primary,
+  .compiler-sample-card .btn-secondary,
+  .compiler-detail .btn-primary,
+  .compiler-detail .btn-secondary,
+  .compiler-quiz .btn-primary,
+  .compiler-quiz .btn-secondary {
+    width: 100%;
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .certificate-frame {
+    min-height: 520px;
+    height: 620px;
+  }
+
+  .certificate {
+    padding: 32px 20px 24px;
+  }
+
+  .certificate-header {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .certificate-header img {
+    width: 72px;
+    height: 60px;
+  }
+
+  .certificate-header strong {
+    font-size: 20px;
+  }
+
+  .certificate-header b {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .rail-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tab-btn {
+    font-size: 10.5px;
+  }
+
+  .session-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .session-fields label:last-child {
+    grid-column: auto;
+  }
+
+  .editor-filename {
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 11px;
+  }
+
+  #editor-host {
+    height: 360px;
+  }
+
+  .compiler-filters {
+    justify-content: flex-start;
+    padding-bottom: 3px;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 900px) {
+  #editor-host {
+    height: 330px;
+  }
+
+  .console-output {
+    height: 220px;
+  }
+}
